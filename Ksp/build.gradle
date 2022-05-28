@@ -1,0 +1,35 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        google()
+        mavenLocal()
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.21"
+    }
+}
+
+plugins {
+    id 'org.jetbrains.kotlin.jvm' version '1.6.21'
+    id 'java-gradle-plugin'
+}
+
+compileKotlin {
+    kotlinOptions {
+        freeCompilerArgs += ["-Xcontext-receivers"]
+        freeCompilerArgs += ["-opt-in=kotlin.RequiresOptIn"]
+    }
+}
+
+
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+
+dependencies {
+    implementation 'com.google.devtools.ksp:symbol-processing-api:1.6.10-1.0.2'
+    implementation("com.squareup:kotlinpoet-ksp:1.11.0")
+    compileOnly("com.yoruneko.annotation:annotation:1.0.0")
+}
