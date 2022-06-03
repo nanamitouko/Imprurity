@@ -9,6 +9,7 @@ import com.squareup.kotlinpoet.ksp.KotlinPoetKspPreview
 import com.squareup.kotlinpoet.ksp.toTypeName
 import com.squareup.kotlinpoet.ksp.toTypeParameterResolver
 import com.squareup.kotlinpoet.ksp.writeTo
+import com.yoruneko.ksp.CLASS_POSTFIX
 
 class MyCodeGenerator constructor(private val resolver: Resolver) {
 
@@ -39,8 +40,8 @@ class MyCodeGenerator constructor(private val resolver: Resolver) {
     @OptIn(DelicateKotlinPoetApi::class, KotlinPoetKspPreview::class)
     private fun generateInternal(cg: CodeGenerator) {
         symbols.forEach { declaration ->
-            val pkgName = declaration.packageName.toString() //包名
-            val name = declaration.simpleName.toString() //接口名
+            val pkgName = declaration.packageName.toString()
+            val name = declaration.simpleName.toString() + CLASS_POSTFIX
             val file = FileSpec.builder(pkgName, name)
                 .addType(
                     TypeSpec.classBuilder(name)

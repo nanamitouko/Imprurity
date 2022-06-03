@@ -1,35 +1,36 @@
-buildscript {
-    repositories {
-        mavenCentral()
-        google()
-        mavenLocal()
-    }
-    dependencies {
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.21"
-    }
-}
-
 plugins {
-    id 'org.jetbrains.kotlin.jvm' version '1.6.21'
-    id 'java-gradle-plugin'
+    id 'java-library'
+    id 'kotlin'
+    id 'org.jetbrains.kotlin.jvm'
+    id 'com.google.devtools.ksp' version '1.6.20-1.0.5'
 }
 
 compileKotlin {
     kotlinOptions {
+        jvmTarget = "1.8"
         freeCompilerArgs += ["-Xcontext-receivers"]
         freeCompilerArgs += ["-opt-in=kotlin.RequiresOptIn"]
     }
 }
 
-
+sourceCompatibility = "8"
+targetCompatibility  = "8"
 
 repositories {
     mavenCentral()
     mavenLocal()
+    google()
 }
 
 dependencies {
-    implementation 'com.google.devtools.ksp:symbol-processing-api:1.6.10-1.0.2'
+    implementation(gradleApi())
+    implementation(localGroovy())
+    implementation 'com.google.devtools.ksp:symbol-processing-api:1.6.20-1.0.5'
     implementation("com.squareup:kotlinpoet-ksp:1.11.0")
-    compileOnly("com.yoruneko.annotation:annotation:1.0.0")
+    compileOnly(project(":annotation"))
+    implementation("com.google.auto.service:auto-service-annotations:1.0-rc7")
+    compileOnly("org.jetbrains.kotlin:kotlin-compiler-embeddable:$kotlin_version")
+    compileOnly("dev.zacsweers.autoservice:auto-service-ksp:0.3.2")
+    ksp("dev.zacsweers.autoservice:auto-service-ksp:0.3.2")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib:${kotlin_version}")
 }

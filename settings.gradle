@@ -5,14 +5,17 @@ pluginManagement {
         mavenCentral()
     }
 }
-dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
-    repositories {
-        google()
-        mavenCentral()
-    }
-}
+//dependencyResolutionManagement {
+//    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+//    repositories {
+//        mavenLocal()
+//        google()
+//        mavenCentral()
+//    }
+//}
 rootProject.name = "Imprurity"
 include ':app'
-includeBuild('Ksp')
+include ':Ksp'
 include ':annotation'
+include ':example'
+includeBuild('Plugins')

@@ -1,38 +1,19 @@
 plugins {
-    id 'com.android.application'
+    id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
-//    id 'com.zty.test' apply true
+    id 'com.google.devtools.ksp' version '1.6.20-1.0.5'
 }
-
-repositories {
-    mavenCentral()
-    google()
-}
+apply plugin: 'kotlin-android'
 
 android {
-    compileSdk 30
+    compileSdk 32
 
     defaultConfig {
-        applicationId "com.example.myapplication"
         minSdk 21
-        targetSdk 30
-        versionCode 1
-        versionName "1.0"
+        targetSdk 31
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        vectorDrawables {
-            useSupportLibrary true
-        }
-    }
-
-    flavorDimensions "app"
-    productFlavors {
-        ps {
-            dimension "app"
-        }
-        sss {
-            dimension "app"
-        }
+        consumerProguardFiles "consumer-rules.pro"
     }
 
     buildTypes {
@@ -56,8 +37,13 @@ dependencies {
 
     implementation 'androidx.core:core-ktx:1.1.0'
     implementation 'androidx.appcompat:appcompat:1.1.0'
-    api 'com.google.code.gson:gson:2.8.9'
+    implementation 'com.google.android.material:material:1.1.0'
     implementation project(":annotation")
-//    implementation project(":Ksp")
-//    ksp project(":Ksp")
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation(project(":Ksp"))
+    ksp project(":Ksp")
+}
+repositories {
+    mavenCentral()
+    google()
 }
