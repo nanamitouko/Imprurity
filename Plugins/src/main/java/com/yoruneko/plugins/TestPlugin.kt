@@ -32,9 +32,9 @@ class TestPlugin : Plugin<Project> {
 //                }
 //                task.dependsOn("compile${it.name}JavaWithJavac")
 //            }
-            project.plugins.getPlugin(AppPlugin::class.java).variantManager.mainComponents.forEach {
-                taskFactory.register(TestTask.ConfigAction(it, project))
-            }
+//            project.plugins.getPlugin(AppPlugin::class.java).variantManager.mainComponents.forEach {
+//                taskFactory.register(TestTask.ConfigAction(it, project))
+//            }
         }
     }
 

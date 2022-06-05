@@ -1,7 +1,7 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
-    id("com.zty.test")
+//    id("com.zty.test")
 }
 
 android {
@@ -57,4 +57,5 @@ repositories {
 dependencies {
     implementation("androidx.appcompat:appcompat:1.1.0")
     implementation(project(":annotation"))
+    api("com.google.code.gson:gson:2.8.6")
 }

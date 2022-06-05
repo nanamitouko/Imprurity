@@ -46,6 +46,32 @@ abstract class TestTask : AndroidVariantTask() {
             println("zty: runtime + classes + project: " + it.name)
         }
 
+        component.get().variantDependencies.getArtifactCollection(
+            AndroidArtifacts.ConsumedConfigType.RUNTIME_CLASSPATH,
+            AndroidArtifacts.ArtifactScope.PROJECT,
+            AndroidArtifacts.ArtifactType.AAR
+        ).artifactFiles.forEach {
+            println("zty: runtime + aar + project: " + it.name)
+        }
+
+
+        component.get().variantDependencies.getArtifactCollection(
+            AndroidArtifacts.ConsumedConfigType.RUNTIME_CLASSPATH,
+            AndroidArtifacts.ArtifactScope.EXTERNAL,
+            AndroidArtifacts.ArtifactType.AAR
+        ).artifactFiles.forEach {
+            println("zty: runtime + aar + external: " + it.name)
+        }
+
+        component.get().variantDependencies.getArtifactCollection(
+            AndroidArtifacts.ConsumedConfigType.COMPILE_CLASSPATH,
+            AndroidArtifacts.ArtifactScope.EXTERNAL,
+            AndroidArtifacts.ArtifactType.CLASSES
+        ).artifactFiles.forEach {
+            println("zty: api + classes + external: " + it.name)
+        }
+
+
 //        fileCollection.from(
 //            component.get().variantDependencies.getArtifactCollection(
 //                AndroidArtifacts.ConsumedConfigType.RUNTIME_CLASSPATH,

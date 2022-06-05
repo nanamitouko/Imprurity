@@ -17,5 +17,5 @@ rootProject.name = "Imprurity"
 include ':app'
 include ':Ksp'
 include ':annotation'
-//include ':example'
+include ':example'
 includeBuild('Plugins')
